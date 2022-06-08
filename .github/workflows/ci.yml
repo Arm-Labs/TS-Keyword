@@ -25,7 +25,7 @@ jobs:
       # Boostrap the environment
       - name: Bootstrap environment
         run : |
-          ./bootstrap.sh
+          cwd application; ./bootstrap.sh
           
       # Simple workflow just to prove we are still alive (remove from final revision)
       - name: Test case
