@@ -27,7 +27,7 @@ jobs:
       - name: Bootstrap environment
         working-directory: ./application
         run : |
-          ./bootstrap.sh
+          ./ats.sh bootstrap
           
       # Simple workflow just to prove we are still alive (remove from final revision)
       - name: Test case
