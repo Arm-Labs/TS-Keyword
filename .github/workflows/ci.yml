@@ -14,7 +14,9 @@ jobs:
       ARMLMD_LICENSE_FILE: /opt/data.dat
       ARM_TOOL_VARIANT: ult
     steps:
-      # Get the source code
+      # Get the source code, the command below is an official github action command.
+      - uses: actions/checkout@v2
+      
       - name: Test case
         run: |
           ls -la
