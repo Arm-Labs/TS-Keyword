@@ -18,14 +18,16 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Test case
+        working-directory: ./application
         run: |
           ls -la
           echo "done ls"
       
       # Boostrap the environment
       - name: Bootstrap environment
+        working-directory: ./application
         run : |
-          cd application; ./bootstrap.sh
+          ./bootstrap.sh
           
       # Simple workflow just to prove we are still alive (remove from final revision)
       - name: Test case
