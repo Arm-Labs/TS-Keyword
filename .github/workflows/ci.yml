@@ -1,5 +1,6 @@
 name: simple-test
-on: [push]
+on: [push] [workflow_dispatch]
+
 jobs:
   hello-world:
     runs-on: arm-custom-runner-5
