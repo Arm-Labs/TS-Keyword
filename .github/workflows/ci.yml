@@ -14,5 +14,6 @@ jobs:
           source /etc/profile.d/avh.sh
           echo $PATH
           armclang --version
+          echo "compiler check done"
           grep HOSTID /opt/data.dat
           grep USER /opt/data.dat
