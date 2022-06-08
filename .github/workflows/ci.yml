@@ -1,5 +1,5 @@
 name: simple-test
-on: [push] [workflow_dispatch]
+on: [push,workflow_dispatch]
 
 jobs:
   hello-world:
@@ -14,6 +14,5 @@ jobs:
           source /etc/profile.d/avh.sh
           echo $PATH
           armclang --version
-          /opt/tool-inventory.sh
           grep HOSTID /opt/data.dat
           grep USER /opt/data.dat
