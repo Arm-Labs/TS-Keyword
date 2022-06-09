@@ -81,10 +81,13 @@ if [[ $# -eq 0 ]]; then
 fi
 
 SHORT=a:p:r:t:,c,h
-LONG=credentials:path:rtos:target:,clean,help
+LONG=credentials:,path:,rtos:,target:,clean,help
 OPTS=$(getopt -n build --options $SHORT --longoptions $LONG -- "$@")
 
 eval set -- "$OPTS"
+
+echo "opts are ($OPTS)"
+echo "long are ($LONG)"
 
 while :
 do
