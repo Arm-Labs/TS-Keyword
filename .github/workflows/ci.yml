@@ -22,6 +22,7 @@ jobs:
         run: |
           ls -la
           echo "done ls"
+          env
       
       # Boostrap the environment
       - name: Bootstrap environment
