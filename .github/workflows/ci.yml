@@ -7,7 +7,7 @@ jobs:
   ci_build_and_test_ats_keyword:
   
     # Specify the type of runner this job will execute within, this will be a GitHub Custom Host runner
-    runs-on: arm-custom-runner-5
+    runs-on: arm-custom-runner-6
     
     env:
       PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/armcompiler/bin:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:/opt/VHT
@@ -28,6 +28,17 @@ jobs:
         working-directory: ./application
         run : |
           ./ats.sh bootstrap
+          
+      # Install tools needed by the build
+      - name: Install tools
+        run : |
+          sudo apt install python3.8-venv
+          
+      # Build the KWS application
+      - name: Build application
+        working-directory: ./application
+        run : |
+          echo "./ats.sh build kws"
           
       # Simple workflow just to prove we are still alive (remove from final revision)
       - name: Test case
