@@ -10,9 +10,11 @@ jobs:
     runs-on: arm-custom-runner-7
     
     env:
-      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/armcompiler/bin:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:/opt:/opt/VHT
+      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/armcompiler/bin:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:/opt/VHT
       ARMLMD_LICENSE_FILE: /opt/data.dat
       ARM_TOOL_VARIANT: ult
+      LD_LIBRARY_PATH: /opt/VHT
+      
     steps:
       # Get the source code, the command below is an official github action command.
       - uses: actions/checkout@v2
@@ -23,8 +25,8 @@ jobs:
           ls -la
           echo "done ls"
           env
-          ls -lia /opt
-          ls -lia /opt/VHT
+          #ls -lia /opt
+          #ls -lia /opt/VHT
 
       
       # BOOTSTRAP the environment
