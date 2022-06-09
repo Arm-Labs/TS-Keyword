@@ -23,6 +23,9 @@ jobs:
           ls -la
           echo "done ls"
           env
+          ls -lia /opt
+          ls -lia /opt/VHT
+
       
       # BOOTSTRAP the environment
       - name: Bootstrap environment
@@ -43,7 +46,7 @@ jobs:
       - name: Build application
         working-directory: ./application
         run : |
-          ./ats.sh build kws
+          #./ats.sh build kws
 
       # RUN the KWS application
       - name: Build application
@@ -54,8 +57,6 @@ jobs:
       # Simple workflow just to prove we are still alive (remove from final revision)
       - name: End Test case
         run: |
-          ls -lia /opt
-          ls -lia /opt/VHT
           cat /etc/profile.d/avh.sh
           echo $PATH
           armclang --version
