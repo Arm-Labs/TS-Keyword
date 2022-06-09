@@ -5,20 +5,20 @@ on: [push,workflow_dispatch]
 
 jobs:
   ci_build_and_test_ats_keyword:
-  
+
     # Specify the type of runner this job will execute within, this will be a GitHub Custom Host runner
     runs-on: arm-custom-runner-7
-    
+
     env:
       PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/armcompiler/bin:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:/opt/VHT
       ARMLMD_LICENSE_FILE: /opt/data.dat
       ARM_TOOL_VARIANT: ult
       LD_LIBRARY_PATH: /opt/VHT
-      
+
     steps:
       # Get the source code, the command below is an official github action command.
       - uses: actions/checkout@v2
-      
+
       - name: Test case
         working-directory: ./application
         run: |
@@ -28,13 +28,13 @@ jobs:
           #ls -lia /opt
           #ls -lia /opt/VHT
 
-      
+
       # BOOTSTRAP the environment
       - name: Bootstrap environment
         working-directory: ./application
         run : |
           ./ats.sh bootstrap
-          
+
       # INSTALL tools needed by the build
       - name: Install tools
         run : |
@@ -43,19 +43,19 @@ jobs:
           python3.8 -m pip install imgtool cbor2
           echo "-----------------------------------"
           python3.9 -m pip install imgtool cffi intelhex cbor2 cbor pytest click
-                   
+
       # BUILD the KWS application
       - name: Build application
         working-directory: ./application
         run : |
-          ./ats.sh build kws -t Corstone-310
+          ./ats.sh build kws --target Corstone-310
 
       # RUN the KWS application
       - name: Build application
         working-directory: ./application
         run : |
-          ./ats.sh run kws -t Corstone-310
-          
+          ./ats.sh run kws --target Corstone-310
+
       # Simple workflow just to prove we are still alive (remove from final revision)
       - name: End Test case
         run: |
