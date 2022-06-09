@@ -10,7 +10,7 @@ jobs:
     runs-on: arm-custom-runner-7
     
     env:
-      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/armcompiler/bin:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:/opt/VHT
+      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/armcompiler/bin:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:/opt:/opt/VHT
       ARMLMD_LICENSE_FILE: /opt/data.dat
       ARM_TOOL_VARIANT: ult
     steps:
@@ -43,13 +43,13 @@ jobs:
       - name: Build application
         working-directory: ./application
         run : |
-          # ./ats.sh build kws
+          ./ats.sh build kws
 
       # RUN the KWS application
       - name: Build application
         working-directory: ./application
         run : |
-          # ./ats.sh run kws
+          ./ats.sh run kws
           
       # Simple workflow just to prove we are still alive (remove from final revision)
       - name: End Test case
