@@ -48,7 +48,7 @@ jobs:
       - name: Build application
         working-directory: ./application
         run : |
-          #./ats.sh build kws
+          ./ats.sh build kws
 
       # RUN the KWS application
       - name: Build application
