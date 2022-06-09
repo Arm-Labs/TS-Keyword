@@ -90,7 +90,8 @@ case "$TARGET" in
     Corstone-310 )
 #      TARGET_OPTIONS="-C cpu0.CFGDTCMSZ=10 -C cpu0.CFGITCMSZ=10 -C cpu0.INITNSVTOR=0x00000000 -C cpu0.INITSVTOR=0x10000000"
 #      FVP_BIN="VHT_Corstone-Polaris"
-      FVP_BIN="VHT_Corstone_SSE-310_Ethos-U55"
+#      FVP_BIN="VHT_Corstone_SSE-310_Ethos-U55"
+      FVP_BIN="VHT_Corstone_SSE-310"
       ;;
     *)
       echo "Invalid target <Corstone-300|Corstone-310>"
