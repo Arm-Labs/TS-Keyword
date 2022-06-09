@@ -44,14 +44,12 @@ jobs:
       - name: Build application
         working-directory: ./application
         run : |
-          echo "./ats.sh build kws"
+          ./ats.sh build kws
           
       # Simple workflow just to prove we are still alive (remove from final revision)
-      - name: Test case
+      - name: End Test case
         run: |
-          source /etc/profile.d/avh.sh
+          cat /etc/profile.d/avh.sh
           echo $PATH
           armclang --version
-          echo "compiler check done"
-          grep HOSTID /opt/data.dat
-          grep USER /opt/data.dat
+          echo "compiler done"
