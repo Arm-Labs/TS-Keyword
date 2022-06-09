@@ -48,13 +48,13 @@ jobs:
       - name: Build application
         working-directory: ./application
         run : |
-          ./ats.sh build kws
+          ./ats.sh build kws --target Corstone-310
 
       # RUN the KWS application
       - name: Build application
         working-directory: ./application
         run : |
-          ./ats.sh run kws
+          ./ats.sh run kws --target Corstone-310
           
       # Simple workflow just to prove we are still alive (remove from final revision)
       - name: End Test case
