@@ -1,4 +1,4 @@
-# Example CI flow, for building Total-Solution Keyword application and then execute upon AVH-Corstone virtual platform.
+# Example CI flow using version 1.1.2 of AVH-FVP, for building Total-Solution Keyword application and then execute upon AVH-Corstone virtual platform.
 
 name: simple-ci-112
 on: [push,workflow_dispatch]
@@ -34,40 +34,39 @@ jobs:
           armclang --version
           echo "compiler done"
 
-#      # BOOTSTRAP the environment
-#      - name: Bootstrap environment
-#        working-directory: ./application
-#        run : |
-#          ./ats.sh bootstrap
-#
-#      # INSTALL tools needed by the build
-#      - name: Install tools
-#        run : |
-#          sudo apt install python3.8-venv
-#          echo "-----------------------------------"
-#          python3.8 -m pip install imgtool cbor2
-#          echo "-----------------------------------"
-#          python3.9 -m pip install imgtool cffi intelhex cbor2 cbor pytest click
-#
-#      # BUILD the KWS application
-#      - name: Build application
-#        working-directory: ./application
-#        run : |
-#          ./ats.sh build kws --target Corstone-300
-#
-#      # RUN the KWS application
-#      - name: Run application
-#        working-directory: ./application
-#        run : |
-#          mkdir -p ./results
-#          ./ats.sh run kws --target Corstone-300 --timelimit 180 2>&1 | tee results/output.txt
-#          echo "-----------------------------------"
-#          cat results/output.txt
-#          echo "-----------------------------------"
-#
-#      # Check the KWS application output
-#      - name: Verify application results
-#        working-directory: ./application
-#        run : |
-#          perl ./scripts/checkResults.pl ./results/output.txt ML_HEARD_ON ML_HEARD_OFF ML_HEARD_GO "ML UNKNOWN" "ML interface initialised" "_silence_"
-#
+      # BOOTSTRAP the environment
+      - name: Bootstrap environment
+        working-directory: ./application
+        run : |
+          ./ats.sh bootstrap
+
+      # INSTALL tools needed by the build
+      - name: Install tools
+        run : |
+          sudo pip3 install click imgtool pytest cbor intelhex
+          echo "-----------------------------------"
+          sudo snap refresh cmake --channel=latest/stable
+          echo "-----------------------------------"
+
+      # BUILD the KWS application
+      - name: Build application
+        working-directory: ./application
+        run : |
+          ./ats.sh build kws --target Corstone-300
+
+      # RUN the KWS application
+      - name: Run application
+        working-directory: ./application
+        run : |
+          mkdir -p ./results
+          ./ats.sh run kws --target Corstone-300 --timelimit 180 2>&1 | tee results/output.txt
+          echo "-----------------------------------"
+          cat results/output.txt
+          echo "-----------------------------------"
+
+      # Check the KWS application output
+      - name: Verify application results
+        working-directory: ./application
+        run : |
+          perl ./scripts/checkResults.pl ./results/output.txt ML_HEARD_ON ML_HEARD_OFF ML_HEARD_GO "ML UNKNOWN" "ML interface initialised" "_silence_"
+
