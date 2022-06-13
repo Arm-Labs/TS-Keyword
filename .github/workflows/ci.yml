@@ -27,7 +27,11 @@ jobs:
           env
           #ls -lia /opt
           ls -lia /opt/VHT
-
+          echo "-----------------------------------"
+          echo $PATH
+          echo "-----------------------------------"
+          armclang --version
+          echo "compiler done"
 
       # BOOTSTRAP the environment
       - name: Bootstrap environment
@@ -54,15 +58,14 @@ jobs:
       - name: Run application
         working-directory: ./application
         run : |
-          ./ats.sh run kws --target Corstone-300 --timelimit 180 2>&1 | tee output.txt
+          mkdir -p ./results
+          ./ats.sh run kws --target Corstone-300 --timelimit 180 2>&1 | tee results/output.txt
           echo "-----------------------------------"
-          cat output.txt
+          cat results/output.txt
           echo "-----------------------------------"
 
-      # Simple workflow just to prove we are still alive (remove from final revision)
-      - name: End Test case
-        run: |
-          cat /etc/profile.d/avh.sh
-          echo $PATH
-          armclang --version
-          echo "compiler done"
+      # Check the KWS application output
+      - name: Verify application results
+        working-directory: ./application
+        run : |
+          perl ./scripts/checkResults.pl ./results/output.txt ML_HEARD_ON ML_HEARD_OFF ML_HEARD_GO "ML UNKNOWN" "ML interface initialised" "_silence_"
