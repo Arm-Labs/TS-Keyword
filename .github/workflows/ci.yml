@@ -54,7 +54,7 @@ jobs:
       - name: Build application
         working-directory: ./application
         run : |
-          ./ats.sh run kws --target Corstone-310
+          ./ats.sh run kws --target Corstone-300 --timelimit 7
 
       # Simple workflow just to prove we are still alive (remove from final revision)
       - name: End Test case

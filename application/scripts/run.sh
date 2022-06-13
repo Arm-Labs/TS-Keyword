@@ -18,7 +18,13 @@
 BUILD_PATH="build"
 TARGET="Corstone-300"
 TARGET_OPTIONS=""
+
+# Time in wall-clock seconds to terminate FVP run
+TIME_LIMIT_VAL=""
+TIME_LIMIT_OPT="--timelimit "
 FVP_BIN=""
+
+numericRE='^[0-9]+$'
 
 function show_usage {
     cat <<EOF
@@ -27,9 +33,10 @@ Usage: $0 [options] example
 Run an example.
 
 Options:
-    -h,--help   Show this help
-    -p,--path   Build path
-    -t,--target Target to run
+    -h,--help       Show this help
+    -p,--path       Build path
+    -t,--target     Target to run
+    -l,--timelimit  Max Wall-clock time in seconds for simulation to run
 
 Examples:
     blinky
@@ -38,13 +45,10 @@ EOF
 }
 
 SHORT=p:t:,h
-LONG=path:,target:,help
+LONG=path:,target:,timelimit:,help
 OPTS=$(getopt -n run --options $SHORT --longoptions $LONG -- "$@")
 
 eval set -- "$OPTS"
-
-echo "opts are ($OPTS)"
-echo "long are ($LONG)"
 
 while :
 do
@@ -56,6 +60,16 @@ do
     -p | --path )
       BUILD_PATH=$2
       shift 2
+      ;;
+    -l | --timelimit )
+      if ! [[ $2 =~ ${numericRE} ]] ; then
+        echo "error: timelimit arg ... not a number" >&2
+        show_usage
+        exit 1
+      else
+        TIME_LIMIT_VAL=$2
+        shift 2
+      fi
       ;;
     -t | --target )
       TARGET=$2
@@ -100,9 +114,19 @@ case "$TARGET" in
       ;;
 esac
 
+# check to make sure arg is actually set with a value (from either command line or default)
+if ! ( [ -z "${TIME_LIMIT_VAL-}" ] || [ "${TIME_LIMIT_VAL:-xxx}" = "xxx" ] )
+then
+  #echo "TIME_LIMIT_VAL is set ${TIME_LIMIT_VAL}"
+  TIME_LIMIT_OPT+=${TIME_LIMIT_VAL}
+else
+  TIME_LIMIT_OPT=""
+fi
+
 set -x
 
 VSI_PY_PATH=$PWD/lib/VHT/interface/audio/python
 OPTIONS="-V $VSI_PY_PATH -C mps3_board.visualisation.disable-visualisation=1 -C mps3_board.smsc_91c111.enabled=1 -C mps3_board.hostbridge.userNetworking=1 -C cpu0.semihosting-enable=1 -C mps3_board.telnetterminal0.start_telnet=0 -C mps3_board.uart0.out_file="-"  -C mps3_board.uart0.unbuffered_output=1 --stat  -C mps3_board.DISABLE_GATING=1"
 
-$FVP_BIN $OPTIONS $TARGET_OPTIONS -a cpu0*="$BUILD_PATH/bootloader/bl2.axf" --data "$BUILD_PATH/secure_partition/tfm_s_signed.bin"@0x38000000 --data "$BUILD_PATH/$1/$1_signed.bin"@0x28060000
+# NOTE: hardcoded run time to 7 wall clock seconds...TODO: make this a command line option
+$FVP_BIN $OPTIONS -$TIME_LIMIT_OPT $TARGET_OPTIONS -a cpu0*="$BUILD_PATH/bootloader/bl2.axf" --data "$BUILD_PATH/secure_partition/tfm_s_signed.bin"@0x38000000 --data "$BUILD_PATH/$1/$1_signed.bin"@0x28060000
