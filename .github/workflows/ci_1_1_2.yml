@@ -43,9 +43,9 @@ jobs:
       # INSTALL tools needed by the build
       - name: Install tools
         run : |
-          sudo apt install python3.8-venv
+          
           echo "-----------------------------------"
-          sudo pip3 install click imgtool pytest cbor intelhex
+          sudo pip3 install click imgtool pytest cbor cbor2 intelhex
           echo "-----------------------------------"
           sudo snap refresh cmake --channel=latest/stable
           echo "-----------------------------------"
