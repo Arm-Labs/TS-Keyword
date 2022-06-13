@@ -26,7 +26,8 @@ jobs:
           echo "done ls"
           env
           ls -lia /opt
-          ls -lia /opt/VHT_1_1_2
+          echo "-----------------------------------"
+          ls -lia /opt/VHT-1.1.2
           echo "-----------------------------------"
           echo $PATH
           echo "-----------------------------------"
