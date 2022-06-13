@@ -54,7 +54,7 @@ jobs:
       - name: Run application
         working-directory: ./application
         run : |
-          ./ats.sh run kws --target Corstone-300 --cpulimit 120 2>&1 | tee output.txt
+          ./ats.sh run kws --target Corstone-300 --timelimit 120 2>&1 | tee output.txt
           echo "-----------------------------------"
           cat output.txt
           echo "-----------------------------------"
