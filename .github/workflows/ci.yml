@@ -52,14 +52,16 @@ jobs:
       - name: Build application
         working-directory: ./application
         run : |
-          ./ats.sh build kws --target Corstone-300
+          env
+          python3 ./pp.py
+          #./ats.sh build kws --target Corstone-300
 
       # RUN the KWS application
       - name: Run application
         working-directory: ./application
         run : |
           mkdir -p ./results
-          ./ats.sh run kws --target Corstone-300 --timelimit 180 2>&1 | tee results/output.txt
+          #./ats.sh run kws --target Corstone-300 --timelimit 180 2>&1 | tee results/output.txt
           echo "-----------------------------------"
           cat results/output.txt
           echo "-----------------------------------"
