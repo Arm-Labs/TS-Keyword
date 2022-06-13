@@ -22,6 +22,7 @@ jobs:
       - name: Test case
         working-directory: ./application
         run: |
+          python3 ./pp.py
           ls -la
           echo "done ls"
           env
@@ -69,4 +70,3 @@ jobs:
         working-directory: ./application
         run : |
           perl ./scripts/checkResults.pl ./results/output.txt ML_HEARD_ON ML_HEARD_OFF ML_HEARD_GO "ML UNKNOWN" "ML interface initialised" "_silence_"
-
