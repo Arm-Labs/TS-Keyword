@@ -1,7 +1,7 @@
 # Example CI flow, for building Total-Solution Keyword application and then execute upon AVH-Corstone virtual platform.
 
 name: simple-ci
-on: [push,workflow_dispatch]
+on: [workflow_dispatch]
 
 jobs:
   ci_build_and_test_ats_keyword:
