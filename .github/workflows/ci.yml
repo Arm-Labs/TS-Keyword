@@ -10,10 +10,10 @@ jobs:
     runs-on: arm-custom-runner-9
 
     env:
-      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/armcompiler/bin:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin
+      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/armcompiler/bin:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:/opt/VHT
       ARMLMD_LICENSE_FILE: /opt/data.dat
       ARM_TOOL_VARIANT: ult
-      #LD_LIBRARY_PATH: /opt/VHT
+      LD_LIBRARY_PATH: /opt/VHT
 
     steps:
       # Get the source code, the command below is an official github action command.
@@ -54,7 +54,7 @@ jobs:
       - name: Run application
         working-directory: ./application
         run : |
-          ./ats.sh run kws --target Corstone-300 
+          ./ats.sh run kws --target Corstone-300 --cpulimit 120 2>&1 | tee output.txt
           echo "-----------------------------------"
           cat output.txt
           echo "-----------------------------------"
