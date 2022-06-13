@@ -52,6 +52,7 @@ jobs:
       - name: Build application
         working-directory: ./application
         run : |
+          env
           python3 ./pp.py
           echo "-----------------------------------"
           # ./ats.sh build kws --target Corstone-300
