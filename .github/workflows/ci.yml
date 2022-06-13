@@ -11,8 +11,8 @@ jobs:
 
     env:
       PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/armcompiler/bin:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin
-      #ARMLMD_LICENSE_FILE: /opt/data.dat
-      #ARM_TOOL_VARIANT: ult
+      ARMLMD_LICENSE_FILE: /opt/data.dat
+      ARM_TOOL_VARIANT: ult
       #LD_LIBRARY_PATH: /opt/VHT
 
     steps:
