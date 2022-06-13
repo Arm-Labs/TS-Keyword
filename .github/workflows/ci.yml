@@ -7,13 +7,13 @@ jobs:
   ci_build_and_test_ats_keyword:
 
     # Specify the type of runner this job will execute within, this will be a GitHub Custom Host runner
-    runs-on: arm-custom-runner-7
+    runs-on: arm-custom-runner-9
 
-    env:
-      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/armcompiler/bin:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:/opt/VHT
-      ARMLMD_LICENSE_FILE: /opt/data.dat
-      ARM_TOOL_VARIANT: ult
-      LD_LIBRARY_PATH: /opt/VHT
+    #env:
+      #PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/armcompiler/bin:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:/opt/VHT
+      #ARMLMD_LICENSE_FILE: /opt/data.dat
+      #ARM_TOOL_VARIANT: ult
+      #LD_LIBRARY_PATH: /opt/VHT
 
     steps:
       # Get the source code, the command below is an official github action command.
@@ -48,13 +48,16 @@ jobs:
       - name: Build application
         working-directory: ./application
         run : |
-          ./ats.sh build kws --target Corstone-310
+          ./ats.sh build kws --target Corstone-300
 
       # RUN the KWS application
-      - name: Build application
+      - name: Run application
         working-directory: ./application
         run : |
-          ./ats.sh run kws --target Corstone-300 --timelimit 600
+          ./ats.sh run kws --target Corstone-300 
+          echo "-----------------------------------"
+          cat output.txt
+          echo "-----------------------------------"
 
       # Simple workflow just to prove we are still alive (remove from final revision)
       - name: End Test case
