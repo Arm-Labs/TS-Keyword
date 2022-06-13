@@ -1,0 +1,72 @@
+# Example CI flow, for building Total-Solution Keyword application and then execute upon AVH-Corstone virtual platform.
+
+name: simple-ci
+on: [push,workflow_dispatch]
+
+jobs:
+  ci_build_and_test_ats_keyword:
+
+    # Specify the type of runner this job will execute within, this will be a GitHub Custom Host runner
+    runs-on: arm-custom-runner-10
+
+    env:
+      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/armcompiler/bin:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:/opt/VHT_1_1_2
+      ARMLMD_LICENSE_FILE: /opt/data.dat
+      ARM_TOOL_VARIANT: ult
+      LD_LIBRARY_PATH: /opt/VHT_1_1_2
+
+    steps:
+      # Get the source code, the command below is an official github action command.
+      - uses: actions/checkout@v2
+
+      - name: Test case
+        working-directory: ./application
+        run: |
+          ls -la
+          echo "done ls"
+          env
+          ls -lia /opt
+          ls -lia /opt/VHT_1_1_2
+          echo "-----------------------------------"
+          echo $PATH
+          echo "-----------------------------------"
+          armclang --version
+          echo "compiler done"
+
+#      # BOOTSTRAP the environment
+#      - name: Bootstrap environment
+#        working-directory: ./application
+#        run : |
+#          ./ats.sh bootstrap
+#
+#      # INSTALL tools needed by the build
+#      - name: Install tools
+#        run : |
+#          sudo apt install python3.8-venv
+#          echo "-----------------------------------"
+#          python3.8 -m pip install imgtool cbor2
+#          echo "-----------------------------------"
+#          python3.9 -m pip install imgtool cffi intelhex cbor2 cbor pytest click
+#
+#      # BUILD the KWS application
+#      - name: Build application
+#        working-directory: ./application
+#        run : |
+#          ./ats.sh build kws --target Corstone-300
+#
+#      # RUN the KWS application
+#      - name: Run application
+#        working-directory: ./application
+#        run : |
+#          mkdir -p ./results
+#          ./ats.sh run kws --target Corstone-300 --timelimit 180 2>&1 | tee results/output.txt
+#          echo "-----------------------------------"
+#          cat results/output.txt
+#          echo "-----------------------------------"
+#
+#      # Check the KWS application output
+#      - name: Verify application results
+#        working-directory: ./application
+#        run : |
+#          perl ./scripts/checkResults.pl ./results/output.txt ML_HEARD_ON ML_HEARD_OFF ML_HEARD_GO "ML UNKNOWN" "ML interface initialised" "_silence_"
+#
