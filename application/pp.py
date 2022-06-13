@@ -12,4 +12,4 @@ for p in sys.path: print (p)
 print ("cbor.file is <" + cborpath + ">")
 print ("cbor2.file is <" + cbor2path + ">")
 
-os.environ['PYTHONPATH'].split(os.pathset)
+# os.environ['PYTHONPATH'].split(os.pathset)
