@@ -1,4 +1,8 @@
+# Under construction!
+#
 # Example CI flow, for building Total-Solution Keyword application and then execute upon AVH-Corstone virtual platform.
+#
+# Note: main commands are commented out at the moment awaiting new binaries.
 
 name: simple-ci
 on: [workflow_dispatch]
@@ -62,9 +66,6 @@ jobs:
         run : |
           mkdir -p ./results
           #./ats.sh run kws --target Corstone-300 --timelimit 180 2>&1 | tee results/output.txt
-          echo "-----------------------------------"
-          cat results/output.txt
-          echo "-----------------------------------"
 
       # Check the KWS application output
       - name: Verify application results
