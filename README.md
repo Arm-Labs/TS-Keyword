@@ -5,11 +5,11 @@ There are 2 ways to trigger the runner workflow, via a code change or manually s
 
 ## Manual workflow execution
 
-If you simply want to execute the runner workflow configured in this repository, you can take advantage of the **workflow_dispatch** option via the [TS-Keyword Actions](https://github.com/Arm-Labs/TS-Keyword/actions) page.
+If you simply want to execute the runner workflow configured in this repository, you can take advantage of the **workflow_dispatch** option via the Actions page.  See the steps below.
 
-1. Click on [TS-Keyword Actions](https://github.com/Arm-Labs/TS-Keyword/actions) link.
+1. In a new browser window, open the [TS-Keyword Actions](https://github.com/Arm-Labs/TS-Keyword/actions) link.
 2. Select the **simple-ci-112** entry on the left, you will then see a row that looks like this:
-   > This workflow has a workflow_dispatch event trigger.    Run Workflow
+   > This workflow has a workflow_dispatch event trigger. . .  **Run Workflow**
 3. Click on the **Run Workflow** button on the right.
    * In the drop down menu choose **Run Workflow**
 
@@ -41,10 +41,10 @@ Skip down to the [Runner observation](#runner-observation) instructions below.
 ## Runner observation
 Follow the instructions below to find your runner action.
 
-1. In the browser showing the [TS-Keyword](https://github.com/Arm-Labs/TS-Keyword):
+1. In the browser showing the [TS-Keyword](https://github.com/Arm-Labs/TS-Keyword) repository page:
    * click on **Actions** or Click on this link [TS-Keyword Actions](https://github.com/Arm-Labs/TS-Keyword/actions).
-   * You should see your run using the **commit message** that you entered above.
-   * Click on the hyperlinked commit message to go to the workflow run.
+   * You should see your run using the **commit message** that you entered above or if you **manually** started the workflow you will see the name of the workflow at the top: **simple-ci-112**.
+   * Click on the hyperlinked message/name to go to the workflow run.
 1. On the specific **runs** page, click on the workflow name in the box, **ci_build_and_test_ats_keyword_112**
    * This next page will show you all the steps that make up this workflow.
    * You can expand each one to see the results of that step.
