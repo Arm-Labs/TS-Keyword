@@ -19,21 +19,6 @@ jobs:
       # Get the source code, the command below is an official github action command.
       - uses: actions/checkout@v2
 
-      - name: Test case
-        working-directory: ./application
-        run: |
-          ls -la
-          echo "done ls"
-          env
-          ls -lia /opt
-          echo "-----------------------------------"
-          ls -lia /opt/VHT-1.1.2
-          echo "-----------------------------------"
-          echo $PATH
-          echo "-----------------------------------"
-          armclang --version
-          echo "compiler done"
-
       # BOOTSTRAP the environment
       - name: Bootstrap environment
         working-directory: ./application
@@ -54,7 +39,6 @@ jobs:
       - name: Build application
         working-directory: ./application
         run : |
-          echo "-----------------------------------"
           ./ats.sh build kws --target Corstone-300
 
       # RUN the KWS application
@@ -62,10 +46,7 @@ jobs:
         working-directory: ./application
         run : |
           mkdir -p ./results
-          ./ats.sh run kws --target Corstone-300 --timelimit 180 2>&1 | tee results/output.txt
-          echo "-----------------------------------"
-          cat results/output.txt
-          echo "-----------------------------------"
+          ./ats.sh run kws --target Corstone-300 --timelimit 160 2>&1 | tee results/output.txt
 
       # Check the KWS application output
       - name: Verify application results
