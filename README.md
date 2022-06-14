@@ -1,8 +1,22 @@
 # TS-Keyword
 Welcome to the Arm Laboratory repository where we are experimenting with using the Arm Total-Solution Keyword detection software in the Open-IoT-SDK project to utilize the GitHub Custom Runner feature.
 
-To take the GitHub Custom runner feature for a spin, clone the repository, modify a file and push those changes back to the repository, automatically starting a Continous-Integration (CI) process.
+There are 2 ways to trigger the runner workflow, via a code change or manually starting the workflow.
 
+## Manual workflow execution
+
+If you simply want to execute the runner workflow configured in this repository, you can take advantage of the **workflow_dispatch** option via the [TS-Keyword Actions](https://github.com/Arm-Labs/TS-Keyword/actions) page.
+
+1. Click on [TS-Keyword Actions](https://github.com/Arm-Labs/TS-Keyword/actions) link.
+2. Select the **simple-ci-112** entry on the left, you will then see a row that looks like this:
+   > This workflow has a workflow_dispatch event trigger.    Run Workflow
+3. Click on the **Run Workflow** button on the right.
+   * In the drop down menu choose **Run Workflow**
+
+Skip down to the [Runner observation](#runner-observation) instructions below.
+## Code change execution
+
+To experiment with a normal developer flow and take GitHub Custom runner feature for a spin, clone the repository, modify a file and push those changes back to the repository, automatically starting a Continous-Integration (CI) process.
 
 1. Clone the repository
     ```sh
@@ -22,11 +36,16 @@ To take the GitHub Custom runner feature for a spin, clone the repository, modif
     ```sh
      git push origin main
     ```
-4. In a browser, go to the GitHub [TS-Keyword](https://github.com/Arm-Labs/TS-Keyword) Custom runner repository.
-5. Click on **Actions** or Click on this link [TS-Keyword Actions](https://github.com/Arm-Labs/TS-Keyword/actions).
+Skip down to the [Runner observation](#runner-observation) instructions below.
+
+## Runner observation
+Follow the instructions below to find your runner action.
+
+1. In the browser showing the [TS-Keyword](https://github.com/Arm-Labs/TS-Keyword):
+   * click on **Actions** or Click on this link [TS-Keyword Actions](https://github.com/Arm-Labs/TS-Keyword/actions).
    * You should see your run using the **commit message** that you entered above.
    * Click on the hyperlinked commit message to go to the workflow run.
-6. Click on the workflow name in the box, **ci_build_and_test_ats_keyword_112**
-   * This will show you all the steps that make up this workflow.
+1. On the specific **runs** page, click on the workflow name in the box, **ci_build_and_test_ats_keyword_112**
+   * This next page will show you all the steps that make up this workflow.
    * You can expand each one to see the results of that step.
-7. The results of the run will be shown on the action screen with a Green checkmark or a Red X.
+1. The results of the run will be shown on the action screen with a Green checkmark or a Red X.
