@@ -47,6 +47,11 @@ jobs:
           mkdir -p ./results
           ./ats.sh run kws --target Corstone-300 --timelimit 140 2>&1 | tee results/output.txt
 
+      # Have a look at output.txt, for kicks, grins, and troubleshooting
+      - name: DEBUG - Look at output.txt
+        working-directory: ./application
+        run: cat ./results/output.txt
+
       # Check the KWS application output
       - name: Verify application results
         working-directory: ./application
