@@ -13,7 +13,7 @@ jobs:
       PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/armcompiler/bin:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:/opt/VHT-1.1.2:/opt/arm-virtual-hardware
       ARMLMD_LICENSE_FILE: /opt/data.dat
       ARM_TOOL_VARIANT: ult
-      LD_LIBRARY_PATH: /opt/VHT-1.1.2
+      LD_LIBRARY_PATH: /opt/VHT-1.1.2:/opt/arm-virtual-hardware
 
     steps:
       # Get the source code, the command below is an official github action command.
