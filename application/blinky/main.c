@@ -40,7 +40,7 @@ int main()
         return EXIT_FAILURE;
     }
 
-    printf("Initialising kernel\r\n");
+    printf("Initialising kernel built from GitHub Demonstration\r\n");
     osStatus_t os_status = osKernelInitialize();
     if (os_status != osOK) {
         printf("osKernelInitialize failed: %d\r\n", os_status);
