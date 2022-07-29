@@ -138,6 +138,8 @@ void main_task(void *arg)
 int main()
 {
     bsp_serial_init();
+    
+    printf("This example has been modified to showcase the Arm tools & GitHub Actions integration\n");
 
     osStatus_t os_status = osKernelInitialize();
     if (os_status != osOK) {
