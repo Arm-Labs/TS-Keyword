@@ -47,6 +47,7 @@ jobs:
       - name: Build application
         working-directory: ./application
         run : |
+          useradd -m ubuntu
           su ubuntu
           ./ats.sh build kws --target Corstone-300
 
