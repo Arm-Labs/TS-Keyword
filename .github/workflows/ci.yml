@@ -23,7 +23,7 @@ jobs:
       - name: Setup License
         working-directory: ./
         run : |
-          echo ${{ secrets.DATA_DAT_ARM_LICENSE }} > /opt/local.dat
+          echo "${{ secrets.DATA_DAT_ARM_LICENSE }}" > /opt/local.dat
           ls -al /opt
           cat /opt/local.dat
 
