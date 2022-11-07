@@ -46,6 +46,9 @@ jobs:
           echo "-----------------------------------"
           python3.9 -m pip install imgtool cffi intelhex cbor2 cbor pytest click
 
+      - name: Debug SSH
+        uses: mxschmitt/action-tmate@v3
+
       # BUILD the KWS application
       - name: Build application
         working-directory: ./application
