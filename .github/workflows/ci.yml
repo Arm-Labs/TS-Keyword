@@ -23,7 +23,11 @@ jobs:
       - name: Setup License
         working-directory: ./
         run : |
+          ls -la /opt
+          md5sum $ARMLMD_LICENSE_FILE
           echo "${{ secrets.ENCODED_LICENSE }}" | base64 -d > $ARMLMD_LICENSE_FILE
+          ls -la /opt
+          md5sum $ARMLMD_LICENSE_FILE
 
       # BOOTSTRAP the environment
       - name: Bootstrap environment
