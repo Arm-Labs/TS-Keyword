@@ -12,28 +12,18 @@ jobs:
     env:
       PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/armcompiler/bin:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:/opt/VHT-1.1.2
       ARMLMD_LICENSE_FILE: /opt/data.dat
-      #ARMLMD_LICENSE_FILE: /opt/local.dat
       ARM_TOOL_VARIANT: ult
       LD_LIBRARY_PATH: /opt/VHT-1.1.2
 
     steps:
       # Get the source code, the command below is an official github action command.
-      - uses: actions/checkout@v3
-      
-      - name: Debug SSH
-        uses: mxschmitt/action-tmate@v3
-        with:
-          timeout-minutes: 10
+      - name: Checkout
+        uses: actions/checkout@v3
       
       - name: Setup License
-        working-directory: ./
         run : |
-          ls -la /opt
-          md5sum $ARMLMD_LICENSE_FILE
           echo "${{ secrets.ENCODED_LICENSE }}" | base64 -d > $ARMLMD_LICENSE_FILE
-          ls -la /opt
           md5sum $ARMLMD_LICENSE_FILE
-          whoami
 
       # BOOTSTRAP the environment
       - name: Bootstrap environment
@@ -50,11 +40,6 @@ jobs:
           python3.8 -m pip install imgtool cbor2
           echo "-----------------------------------"
           python3.9 -m pip install imgtool cffi intelhex cbor2 cbor pytest click
-
-      - name: Debug SSH
-        uses: mxschmitt/action-tmate@v3
-        with:
-          timeout-minutes: 30
 
       # BUILD the KWS application
       - name: Build application
