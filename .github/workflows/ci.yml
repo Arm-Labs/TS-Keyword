@@ -49,7 +49,7 @@ jobs:
       - name: Build application
         working-directory: ./application
         run : |
-          ./ats.sh build kws --target Corstone-300
+          sudo ./ats.sh build kws --target Corstone-300
 
       # RUN the KWS application
       - name: Run application
