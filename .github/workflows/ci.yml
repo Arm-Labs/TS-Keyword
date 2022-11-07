@@ -28,6 +28,7 @@ jobs:
           echo "${{ secrets.ENCODED_LICENSE }}" | base64 -d > $ARMLMD_LICENSE_FILE
           ls -la /opt
           md5sum $ARMLMD_LICENSE_FILE
+          whoami
 
       # BOOTSTRAP the environment
       - name: Bootstrap environment
@@ -49,7 +50,7 @@ jobs:
       - name: Build application
         working-directory: ./application
         run : |
-          sudo ./ats.sh build kws --target Corstone-300
+          ./ats.sh build kws --target Corstone-300
 
       # RUN the KWS application
       - name: Run application
