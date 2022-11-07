@@ -18,14 +18,12 @@ jobs:
 
     steps:
       # Get the source code, the command below is an official github action command.
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       
       - name: Setup License
         working-directory: ./
         run : |
-          echo "${{ secrets.DATA_DAT_ARM_LICENSE }}" > /opt/local.dat
-          ls -al /opt
-          cat /opt/local.dat
+          echo "${{ secrets.ENCODED_LICENSE }}" | base64 -d > $ARMLMD_LICENSE_FILE
 
       # BOOTSTRAP the environment
       - name: Bootstrap environment
