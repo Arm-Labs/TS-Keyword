@@ -1,5 +1,5 @@
 # TS-Keyword 
-Welcome to the Arm Laboratory repository where we are experimenting with using the Arm Total-Solution Keyword detection software in the Open-IoT-SDK project to utilize the GitHub Custom Runner feature.
+Welcome to the Arm Laboratory repository where we are demonstrating using the Arm Total-Solution Keyword detection software in the Open-IoT-SDK project to utilize the GitHub Custom Runner feature.  This repository can be used as a template to create your own CI system within GitHub.  Go ahead and fork this repository to your own GitHub account and replace the actions with your own.  See below for more information on how it all works.
 
 There are 2 ways to trigger the runner workflow, via a code change or manually starting the workflow.
 
@@ -17,6 +17,8 @@ Skip down to the [Runner observation](#runner-observation) instructions below.
 ## Code change execution
 
 To experiment with a normal developer flow and take GitHub Custom runner feature for a spin, clone the repository, modify a file and push those changes back to the repository, automatically starting a Continous-Integration (CI) process.
+
+It is expected at this stage that you have forked this repository and you are working within your own project.
 
 1. Clone the repository
     ```sh
@@ -39,7 +41,7 @@ To experiment with a normal developer flow and take GitHub Custom runner feature
 Skip down to the [Runner observation](#runner-observation) instructions below.
 
 ## Runner observation
-Follow the instructions below to find your runner action.
+Follow the instructions below to find your runner action. We use the address of this repository for educational purposes only.  Replace the location with your own project for actual execution.
 
 1. In the browser showing the [TS-Keyword](https://github.com/Arm-Labs/TS-Keyword) repository page:
    * click on **Actions** or Click on this link [TS-Keyword Actions](https://github.com/Arm-Labs/TS-Keyword/actions).
