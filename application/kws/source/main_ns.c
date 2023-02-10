@@ -139,6 +139,9 @@ int main()
 {
     bsp_serial_init();
 
+    // Print a message to show that the program has started and greet the world
+    printf("Hello World!\r\n");
+
     osStatus_t os_status = osKernelInitialize();
     if (os_status != osOK) {
         printf("osKernelInitialize failed: %d\r\n", os_status);
