@@ -7,7 +7,8 @@ jobs:
   ci_build_and_test_ats_keyword_112:
 
     # Specify the type of runner this job will execute within, this will be a GitHub Custom Host runner
-    runs-on: arm-custom-runner-10
+    #runs-on: arm-custom-runner-10
+    runs-on: Arm-Virtual-Hardware
 
     env:
       PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/armcompiler/bin:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:/opt/VHT-1.1.2
@@ -20,10 +21,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       
-      - name: Setup License
-        run : |
-          echo "${{ secrets.ENCODED_LICENSE }}" | base64 -d > $ARMLMD_LICENSE_FILE
-          md5sum $ARMLMD_LICENSE_FILE
+      #- name: Setup License
+      #  run : |
+      #    echo "${{ secrets.ENCODED_LICENSE }}" | base64 -d > $ARMLMD_LICENSE_FILE
+      #    md5sum $ARMLMD_LICENSE_FILE
 
       # BOOTSTRAP the environment
       - name: Bootstrap environment
